@@ -1,15 +1,10 @@
 //solution-002
-const sumEvenTermsOfFibonacci = (limit = 4000000) => { //if not passed, default limit is four millions
-	if (limit < 2) return 0
-	let sequence = [1, 2]
-	let sum = 2
-	let nextTerm = sequence[sequence.length - 1] + sequence[sequence.length - 2]
-	while (nextTerm <= limit) {
-		sum += nextTerm%2===0? nextTerm : 0
-		sequence.push(nextTerm)
-		nextTerm = sequence[sequence.length - 1] + sequence[sequence.length - 2]
-	}
-	return sum
+const sumEvenTermsOfFibonacciBelow = (limit = 4000000) => { //if not passed, default limit is four millions
+	return sumEvenFibonacciNumbers(limit, sum = 0, firstTerm = 1, secondTerm = 1, nextTerm = firstTerm + secondTerm)
 }
 
-module.exports = sumEvenTermsOfFibonacci
+const sumEvenFibonacciNumbers = (limit, sum, firstTerm, secondTerm, nextTerm) => {
+	return nextTerm > limit? sum : sumEvenFibonacciNumbers(limit, sum += nextTerm%2? 0 : nextTerm, secondTerm, nextTerm, secondTerm + nextTerm)
+}
+
+module.exports = sumEvenTermsOfFibonacciBelow
