@@ -1,13 +1,10 @@
 //iterate files on tests folder
 
 let fs = require('fs');
+let { fork } = require('child_process')
 
-const testsDir = __dirname + '/tests'
-
-let files =fs.readdirSync(testsDir)
+let files =fs.readdirSync(__dirname + '/tests')
 
 files.forEach(file => {
-  files.forEach(function (file, index) {
-  	let test = require(`./tests/${file}`)  	
-  })
+  fork(`./tests/${file}`)
 })

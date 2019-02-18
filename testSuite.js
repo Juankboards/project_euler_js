@@ -6,7 +6,8 @@ const createTestSuite = () => {
 	let log = []
 	return ({
 		describe: (description, callback) => {
-			console.log('\n\x1b[33m%s\x1b[0m', description)
+			console.log('\n')
+			console.log('\x1b[33m%s\x1b[0m', description)
 			console.group();
 			callback()
 			console.groupEnd()
@@ -26,10 +27,10 @@ const createTestSuite = () => {
 			}
 		},
 		results: () => {
-			console.log('\n')
-			console.log('\x1b[32m%s\x1b[0m', `Passed Tests: ${passed}`)
+			console.group();
+			console.log('\n\x1b[32m%s\x1b[0m', `Passed Tests: ${passed}`)
 			console.log('\x1b[31m%s\x1b[0m', `Failed Tests: ${failed}`)
-			console.log('\n')
+			console.groupEnd()
 		},
 	})
 }
