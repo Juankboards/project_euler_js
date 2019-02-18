@@ -1,12 +1,11 @@
 //solution-001
-const sumMultiplesOf3And5 = limit => {
-	let sum = 0
-	for (let i=1; i<limit; i++) {
-		sum += isMultipleOf3Or5(i)? i : 0
-	}
-	return sum
+const sumMultiplesOf3And5 = (limit = 0) => { //if not passed, default limit is zero
+	if (limit <= 0) return 0 //we only consider natural numbers
+	let sumMultiplesOf = sumMultiplesBelow(limit)	
+	return sumMultiplesOf(3) + sumMultiplesOf(5) - sumMultiplesOf(15)
 }
 
-const isMultipleOf3Or5 = num => (num%3==0 || num%5==0)
+const sequenceSum = num => (num**2 + num)/2
+const sumMultiplesBelow = limit => num => num*sequenceSum(parseInt((limit - 1)/num))
 
 module.exports = sumMultiplesOf3And5
